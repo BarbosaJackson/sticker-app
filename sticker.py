@@ -88,7 +88,8 @@ class EntryToLabelsSticker:
     def close_tab(self):
         self.notebook.forget(self.frame)
         if not self.notebook.tabs():
-            self.notebook.master.destroy()
+            messagebox.showinfo("Aviso", "Nenhum sticker restante. Adicione um novo.")
+
 
     def start_move(self, event):
         root = self.frame.winfo_toplevel()
