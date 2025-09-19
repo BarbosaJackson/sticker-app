@@ -25,7 +25,7 @@ class EntryToLabelsSticker:
             fg=self.button_fg,
             relief="flat",
             activebackground="#ff4444",
-            font=("Arial", 10, "bold"),
+            font=("TkDefaultFont", 10, "bold"),
             padx=5,
             pady=2,
         )
@@ -33,10 +33,10 @@ class EntryToLabelsSticker:
 
         self.label_title = tk.Label(
             self.inner_frame,
-            text="📌 Sticker: Entry + salvar para labels",
+            text="Sticker: Entry + salvar para labels",
             bg=self.bg_color,
             fg=self.fg_color,
-            font=("Arial", 12),
+            font=("TkDefaultFont", 12),
             justify="left",
         )
         self.label_title.pack(padx=10, pady=(30, 10))
@@ -44,7 +44,7 @@ class EntryToLabelsSticker:
         input_frame = tk.Frame(self.inner_frame, bg=self.bg_color)
         input_frame.pack(padx=10, pady=5, fill="x")
 
-        self.entry = tk.Entry(input_frame, font=("Arial", 12))
+        self.entry = tk.Entry(input_frame, font=("TkDefaultFont", 12))
         self.entry.pack(side="left", fill="x", expand=True)
 
         save_button = tk.Button(
@@ -53,7 +53,7 @@ class EntryToLabelsSticker:
             command=self.save_text,
             bg="#4caf50",
             fg="white",
-            font=("Arial", 11, "bold"),
+            font=("TkDefaultFont", 11, "bold"),
             relief="flat",
             padx=10,
             pady=5,
@@ -78,7 +78,7 @@ class EntryToLabelsSticker:
             messagebox.showwarning("Aviso", "Digite algum texto antes de salvar.")
             return
 
-        label = tk.Label(self.labels_frame, text=texto, font=("Arial", 12), bg=self.bg_color, fg=self.fg_color, wraplength=450, justify="left")
+        label = tk.Label(self.labels_frame, text=texto, font=("TkDefaultFont", 12), bg=self.bg_color, fg=self.fg_color, wraplength=450, justify="left")
         label.pack(anchor="w", pady=2)
         self.labels.append(label)
 
@@ -133,7 +133,7 @@ def open_add_popup(first_time=False):
     label = tk.Label(popup, text="Nome do novo sticker:", bg=bg_color, fg=fg_color)
     label.pack(pady=(15, 5))
 
-    entry = tk.Entry(popup, font=("Arial", 12))
+    entry = tk.Entry(popup, font=("TkDefaultFont", 12))
     entry.pack(padx=10, fill="x")
     entry.focus_set()
 
@@ -148,7 +148,7 @@ def open_add_popup(first_time=False):
         else:
             messagebox.showwarning("Aviso", "Por favor, insira um nome válido.")
 
-    btn = tk.Button(popup, text="Adicionar", command=confirmar, bg="#2196f3", fg="white", font=("Arial", 11, "bold"))
+    btn = tk.Button(popup, text="Adicionar", command=confirmar, bg="#2196f3", fg="white", font=("TkDefaultFont", 11, "bold"))
     btn.pack(pady=10)
     popup.bind("<Return>", lambda e: confirmar())
 
@@ -211,7 +211,7 @@ btn_add_corner = tk.Button(
     command=open_add_popup,
     bg="#00bcd4",
     fg="white",
-    font=("Arial", 12, "bold"),
+    font=("TkDefaultFont", 12, "bold"),
     relief="raised",
     padx=12,
     pady=6,
