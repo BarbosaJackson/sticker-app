@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "sticker-app"
+version = "0.0.1"
+description = "a project to create annotations"
+authors = ["kcaj"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.extras]
+tk = ["tkinter (system)"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
