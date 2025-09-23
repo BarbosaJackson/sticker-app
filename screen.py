@@ -127,5 +127,5 @@ class Screen:
 
 color = Color("#2e2e2e", "#f0f0f0", "#ff5555", "#ffffff", "#666666")
 screen = Screen(color, tk.Tk(), FileManager())
-screen.configure_root_window("Stickers App", 500, 400, 300, 300)
+screen.configure_root_window("Stickers App", 700, 500, 200, 150)
 screen.start_screen()

@@ -6,9 +6,10 @@ class FileManager:
     def create_folder(self, name):
         os.makedirs(name, exist_ok=True)
     
-    def write_file(self, folder_name, file_name, text):
+    def write_file(self, folder_name, file_name, text, done=False):
+        mode = "1" if done else "0"
         with open(f"{folder_name}/{file_name}.txt", "a") as file:
-            file.write(text)
+            file.write(f"{mode}|{text}\n")
 
     def get_files(self, folder_name):
         files = []
@@ -27,7 +28,14 @@ class FileManager:
 
     def read_file(self, folder_name, file_name):
         with open(f"{folder_name}/{file_name}", "r") as file:
-            return file.readlines()
+            lines = file.readlines()
+        items = []
+        for line in lines:
+            line = line.strip()
+            if line:
+                status, text = line.split("|", 1)
+                items.append((status == "1", text))
+        return items
         
     def delete_file(self, name, popup):
         if not name.strip():
