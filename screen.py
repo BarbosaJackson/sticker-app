@@ -1,10 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 
-from color import Color
 from button import Button
 from widgets import Widgets
-from file_manager import FileManager
 
 class Screen:
     def __init__(self, color, root_window, file_control):
@@ -25,12 +23,12 @@ class Screen:
         self.root_window.geometry(f"{width}x{height}+{pos_x}+{pos_y}")
 
     def configure_notebook_container(self, root_window):
-        notebook_container = tk.Frame(root_window, bg=color.background_color) # frame que contém o notebook (ajuda layout)
-        notebook_container.pack(side="top", fill="x", padx=5, pady=5)   # empacota o container no topo, preenchendo horizontalmente
+        notebook_container = tk.Frame(root_window, bg=self.color.background_color)
+        notebook_container.pack(side="top", fill="x", padx=5, pady=5)
         return notebook_container
 
     def configure_notebook(self):
-        notebook = ttk.Notebook(self.notebook_container)                  # cria o widget Notebook (abas) com pai notebook_container
+        notebook = ttk.Notebook(self.notebook_container)
         notebook.pack(side="left", fill="x", expand=True)  
         return notebook
 
@@ -88,11 +86,11 @@ class Screen:
         if self.file_control.check_folder_exists() and self.file_control.check_files_exists():
             self.load_stickers_exists()
         else:
-            self.add_sticker_button.add_sticker_command(color)
+            self.add_sticker_button.add_sticker_command(self.color)
 
     def configure_add_sticker_button(self):
         add_sticker_button = Button(self, "Adicionar")
-        add_sticker_button.configure_add_sticker(color)
+        add_sticker_button.configure_add_sticker(self.color)
         return add_sticker_button
 
     def add_sticker(self, name):
@@ -119,13 +117,7 @@ class Screen:
         current_tabs = self.notebook.tabs()
 
         for sticker in self.stickers:
-            if str(sticker.frame) in current_tabs:  # só remove se ainda existir
+            if str(sticker.frame) in current_tabs:
                 self.notebook.forget(sticker.frame)
         self.stickers.clear()
         self.load_stickers_exists()
-
-
-color = Color("#2e2e2e", "#f0f0f0", "#ff5555", "#ffffff", "#666666")
-screen = Screen(color, tk.Tk(), FileManager())
-screen.configure_root_window("Stickers App", 700, 500, 200, 150)
-screen.start_screen()
